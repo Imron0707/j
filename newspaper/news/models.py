@@ -90,4 +90,4 @@ class PostCategory(models.Model):
     posts = models.ForeignKey(Post, on_delete=models.CASCADE)
     categoryThough = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-g = 0
+
