@@ -8,5 +8,6 @@ Product
 
 <!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
 {% block content %}
-<h1>{{ post in news }}</h1>
+<h1>{{ post.headerPost }}</h1>
+<p>{{post.textPost}}</p>
 {% endblock content %}
