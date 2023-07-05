@@ -1,0 +1,12 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Product
+{% endblock title %}
+
+{% block content %}
+{% for post in posts %}
+    <h2>{{ post.headerPost }}</h2>
+    <p>{{post.textPost}}</p>
+{% endfor %}
+{% endblock content %}

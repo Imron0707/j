@@ -66,8 +66,9 @@ class Post(models.Model):
     def dislike(self):
         pass
 
-    def previev(self):
-        return '{} ... {}'.format(self.textPost[0:123], str(self.rating))  # Поменять на F строки
+    def __str__(self):
+        return f'{self.textPost[:20]}...'
+
 
 
 class Comment(models.Model):

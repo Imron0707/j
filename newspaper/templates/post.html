@@ -1,5 +1,5 @@
 
-{% extends 'default.html' %}
+{% extends 'flatpages/default.html' %}
 
 <!-- Название у нас будет Product -->
 {% block title %}
@@ -10,4 +10,5 @@ Product
 {% block content %}
 <h1>{{ post.headerPost }}</h1>
 <p>{{post.textPost}}</p>
+<p>{{ time_now|date:'d m Y' }}</p>
 {% endblock content %}
