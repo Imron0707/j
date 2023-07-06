@@ -20,25 +20,10 @@ class Author(models.Model):
         self.save()
 
 
-Politice = 'Политика'
-Sport = 'Спорт'
-Education = 'Образование'
-IT = 'IT'
-CITY = 'Город'
-
-CATEGORY = [
-    (Politice, 'Политика'),
-    (Sport, 'Спорт'),
-    (Education, 'Образование'),
-    (IT, 'IT'),
-    (CITY, 'Город'),
-]
-
 
 class Category(models.Model):
     name = models.CharField(max_length=64,
-                                choices=CATEGORY,
-                                default=Education,
+                                default='Education',
                                 unique=True)
 
 
@@ -61,11 +46,13 @@ class Post(models.Model):
     categoryes = models.ManyToManyField(Category, through='PostCategory')
 
     def like(self):
-        pass
+        self.rating += 1
+        self.save()
 
     def dislike(self):
-        pass
-
+        self.rating -= 1
+        self.save()
+    @property
     def __str__(self):
         return f'{self.textPost[:20]}...'
 
@@ -75,7 +62,7 @@ class Comment(models.Model):
     PostComment = models.ForeignKey(Post, on_delete=models.CASCADE)
     CommentUser = models.ForeignKey(User, on_delete=models.CASCADE)
     textComment = models.TextField()
-    commentcreate = models.DateField(auto_created=True)
+    commentcreate = models.DateTimeField(auto_now_add=True)
     rating = models.SmallIntegerField(default=0)
 
     def like(self):
