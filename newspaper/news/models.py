@@ -20,11 +20,10 @@ class Author(models.Model):
         self.save()
 
 
-
 class Category(models.Model):
     name = models.CharField(max_length=64,
-                                default='Education',
-                                unique=True)
+                            default='Education',
+                            unique=True)
 
 
 Article = 'Ar'
@@ -52,10 +51,9 @@ class Post(models.Model):
     def dislike(self):
         self.rating -= 1
         self.save()
-    @property
+
     def __str__(self):
         return f'{self.textPost[:20]}...'
-
 
 
 class Comment(models.Model):
@@ -77,5 +75,3 @@ class Comment(models.Model):
 class PostCategory(models.Model):
     posts = models.ForeignKey(Post, on_delete=models.CASCADE)
     categoryThough = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-
