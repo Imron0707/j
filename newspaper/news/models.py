@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -45,7 +46,7 @@ class Post(models.Model):
     rating = models.SmallIntegerField(default=0)  # Рейтинг пользователя
     categoryes = models.ManyToManyField(Category, through='PostCategory')  # Поле категории
     image = models.ImageField(upload_to='images/', null=True, blank=True)
-    image_url = models.URLField(default='')
+    image_url = models.URLField(default='', null=True)
 
     def like(self):
         self.rating += 1
@@ -54,6 +55,9 @@ class Post(models.Model):
     def dislike(self):
         self.rating -= 1
         self.save()
+
+    def get_absolute_url(self):
+        return reverse('detailpostlist', args=[str(self.id)])
 
 
 class Comment(models.Model):
