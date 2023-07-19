@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'news',
     'accounts',
+    'django_filters',
 ]
 
 SITE_ID = 1
@@ -134,3 +135,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+MEDIA_URL = '/media/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

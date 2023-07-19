@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Sum
+from django.urls import reverse
 
 
 class Author(models.Model):
@@ -38,11 +39,14 @@ NEAR = [
 class Post(models.Model):
     post_type = models.CharField(max_length=2, choices=NEAR, default=News)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    headerPost = models.CharField(max_length=256)
-    textPost = models.TextField()
-    createPost = models.DateTimeField(auto_now_add=True)
-    rating = models.SmallIntegerField(default=0)
-    categoryes = models.ManyToManyField(Category, through='PostCategory')
+    headerPost = models.CharField(max_length=256)  # Заголовок поста
+    textPost = models.TextField()  # текст поста
+    previewPost = models.CharField(max_length=512, default='')  # Превью поста
+    createPost = models.DateTimeField(auto_now_add=True)  # Дата создания
+    rating = models.SmallIntegerField(default=0)  # Рейтинг пользователя
+    categoryes = models.ManyToManyField(Category, through='PostCategory')  # Поле категории
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image_url = models.URLField(default='', null=True)
 
     def like(self):
         self.rating += 1
@@ -52,8 +56,8 @@ class Post(models.Model):
         self.rating -= 1
         self.save()
 
-    def __str__(self):
-        return f'{self.textPost[:20]}...'
+    def get_absolute_url(self):
+        return reverse('detailpostlist', args=[str(self.id)])
 
 
 class Comment(models.Model):
