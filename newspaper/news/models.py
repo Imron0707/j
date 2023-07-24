@@ -46,7 +46,7 @@ class Post(models.Model):
     rating = models.SmallIntegerField(default=0)  # Рейтинг пользователя
     categoryes = models.ManyToManyField(Category, through='PostCategory')  # Поле категории
     image = models.ImageField(upload_to='images/', null=True, blank=True)
-    image_url = models.URLField(default='', null=True)
+    image_url = models.URLField(null=True, blank=True)
 
     def like(self):
         self.rating += 1
