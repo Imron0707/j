@@ -13,10 +13,19 @@ Product
        <input type="submit" value="Найти" />
    </form>
 </h1>
+{% if perms.news.add_Post %}
+<a href="{% url 'news_edit' %}">Добавить пост</a>
+{% endif %}
 {% for post in posts %}
     <h2>{{ post.headerPost }}</h2>
     <p>{{post.previewPost}}</p>
     <img src="{{ post.image.url}}" alt="{{post.headerPost}}">
+{% if perms.news.change_Post %}
+<a href="{% url 'news_update' pk=post.pk %}">Изменить</a>
+{% endif %}
+{% if perms.news.delete_Post %}
+<a href="{% url 'news_delete' pk=post.pk %}">Удалить</a>
+{% endif %}
 {% endfor %}
    {# Добавляем пагинацию на страницу #}
 
