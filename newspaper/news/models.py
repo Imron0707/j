@@ -25,6 +25,10 @@ class Category(models.Model):
     name = models.CharField(max_length=64,
                             default='Education',
                             unique=True)
+    subscribers = models.ManyToManyField(User, related_name='categories')
+    def __str__(self):
+        return self.name
+
 
 
 Article = 'Ar'
@@ -44,9 +48,7 @@ class Post(models.Model):
     previewPost = models.CharField(max_length=512, default='')  # Превью поста
     createPost = models.DateTimeField(auto_now_add=True)  # Дата создания
     rating = models.SmallIntegerField(default=0)  # Рейтинг пользователя
-    categoryes = models.ManyToManyField(Category, through='PostCategory')  # Поле категории
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
-    image_url = models.URLField(null=True, blank=True)
+    categoryes = models.ManyToManyField(Category)  # Поле категории
 
     def like(self):
         self.rating += 1
@@ -76,6 +78,4 @@ class Comment(models.Model):
         self.save()
 
 
-class PostCategory(models.Model):
-    posts = models.ForeignKey(Post, on_delete=models.CASCADE)
-    categoryThough = models.ForeignKey(Category, on_delete=models.CASCADE)
+

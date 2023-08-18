@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,16 +48,17 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
-    'news',
+    'news.apps.NewsConfig',
     'accounts',
     'django_filters',
+    'django_apscheduler',
 ]
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 SITE_ID = 1
 
@@ -145,6 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+SITE_URL = 'http://127.0.0.1:8000'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -154,5 +160,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
-MEDIA_URL = '/media/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+EMAIL_ADMIN = EMAIL_HOST_USER
+# Format string for displaying run time timestamps in the Django admin site. The default
+# just adds seconds to the standard Django format, which is useful for displaying the timestamps
+# for jobs that are scheduled to run on intervals of less than one minute.
+#
+# See https://docs.djangoproject.com/en/dev/ref/settings/#datetime-format for format string
+# syntax details.
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+
+# Maximum run time allowed for jobs that are triggered manually via the Django admin site, which
+# prevents admin site HTTP requests from timing out.
+#
+# Longer running jobs should probably be handed over to a background task processing library
+# that supports multiple background worker processes instead (e.g. Dramatiq, Celery, Django-RQ,
+# etc. See: https://djangopackages.org/grids/g/workers-queues-tasks/ for popular options).
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
