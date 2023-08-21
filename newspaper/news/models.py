@@ -48,7 +48,7 @@ class Post(models.Model):
     previewPost = models.CharField(max_length=512, default='')  # Превью поста
     createPost = models.DateTimeField(auto_now_add=True)  # Дата создания
     rating = models.SmallIntegerField(default=0)  # Рейтинг пользователя
-    categoryes = models.ManyToManyField(Category)  # Поле категории
+    categoryes = models.ManyToManyField(Category, through='PostCategory')  # Поле категории
 
     def like(self):
         self.rating += 1
@@ -78,4 +78,6 @@ class Comment(models.Model):
         self.save()
 
 
-
+class PostCategory(models.Model):
+    posts = models.ForeignKey(Post, on_delete=models.CASCADE)
+    categoryThough = models.ForeignKey(Category, on_delete=models.CASCADE)
