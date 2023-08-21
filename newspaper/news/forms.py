@@ -10,9 +10,8 @@ class PostFormNews(forms.ModelForm):
             'headerPost',  # Заголовок поста
             'previewPost',  # превью
             'textPost',  # текст поста
-            'image',  # изображения
-            'image_url',
             'author', # url изображения
+            'categoryes',
         ]
 
 
@@ -23,9 +22,8 @@ class PostFormArticle(forms.ModelForm):
             'headerPost',  # Заголовок поста
             'previewPost',  # превью
             'textPost',  # текст поста
-            'image',  # изображения
-            'image_url',  # url изображения
             'author',
+            'categoryes',
         ]
         def clean(self):
             cleaned_data = super().clean()

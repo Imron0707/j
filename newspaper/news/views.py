@@ -1,9 +1,12 @@
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from datetime import datetime
-from .models import Post
+from .models import Post, Category
 from .filters import PostFilter
 from django.urls import reverse_lazy
 from .forms import PostFormNews, PostFormArticle
@@ -11,10 +14,10 @@ from .forms import PostFormNews, PostFormArticle
 
 class postList(ListView):
     model = Post
-    template_name = 'news.html'
+    template_name = 'news/news.html'
     context_object_name = 'posts'
     ordering = '-createPost'  # Указываем поле для упорядочивания объектов
-    paginate_by = 7
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -31,7 +34,7 @@ class postList(ListView):
 
 class detailpostlist(DetailView):
     model = Post
-    template_name = 'post.html'
+    template_name = 'news/post.html'
     context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
@@ -46,7 +49,7 @@ class NewsCreate(PermissionRequiredMixin, CreateView):
     # модель товаров
     model = Post
     # и новый шаблон, в котором используется форма.
-    template_name = 'news_edit.html'
+    template_name = 'news/news_edit.html'
 
 
 class ArticleCreate(PermissionRequiredMixin, CreateView):
@@ -55,7 +58,7 @@ class ArticleCreate(PermissionRequiredMixin, CreateView):
     # модель товаров
     model = Post
     # и новый шаблон, в котором используется форма.
-    template_name = 'article_edit.html'
+    template_name = 'news/article_edit.html'
 
 
 class NewsUpdate(PermissionRequiredMixin, UpdateView):
@@ -64,7 +67,7 @@ class NewsUpdate(PermissionRequiredMixin, UpdateView):
     # модель товаров
     model = Post
     # и новый шаблон, в котором используется форма.
-    template_name = 'news_edit.html'
+    template_name = 'news/news_edit.html'
 
 
 class ArticleUpdate(PermissionRequiredMixin, UpdateView):
@@ -73,18 +76,44 @@ class ArticleUpdate(PermissionRequiredMixin, UpdateView):
     # модель товаров
     model = Post
     # и новый шаблон, в котором используется форма.
-    template_name = 'article_edit.html'
+    template_name = 'news/article_edit.html'
 
 
 class NewsDelete(PermissionRequiredMixin, DeleteView):
     permission_required = ('news.delete_Post',)
     model = Post
-    template_name = 'news_delete.html'
+    template_name = 'news/news_delete.html'
     success_url = reverse_lazy('news')
 
 
 class ArticleDelete(PermissionRequiredMixin, DeleteView):
     permission_required = ('news.delete_Post',)
     model = Post
-    template_name = 'article_delete.html'
+    template_name = 'news/article_delete.html'
     success_url = reverse_lazy('news')
+
+
+class CategoryListView(ListView):
+    model = Post
+    template_name = 'news/category_list.html'
+    context_object_name = 'category_news_list'
+
+    def get_queryset(self):
+        self.category = get_object_or_404(Category, id=self.kwargs['pk'])
+        queryset = Post.objects.filter(categoryes__id=self.category.id).order_by('-createPost')
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_not_subscriber'] = self.request.user not in self.category.subscribers.all()
+        context['category'] = self.category
+        return context
+
+@login_required
+def subscribe(request, pk):
+    user = request.user
+    category = Category.objects.get(id=pk)
+    category.subscribers.add(user)
+
+    message = 'Вы успешно подписались на рассылку новостей категории'
+    return render(request, 'news/subscribe.html', {'category': category, 'message': message})
