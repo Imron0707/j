@@ -19,3 +19,103 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 C:\Users\acer\PycharmProjects\news_site\newspaper\news\signals.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+
+def chain(*args, **kwargs):
+    return 1
+
+
+def xstarmap(task, it):
+    return 1
+
+
+def accumulate(self, *args, **kwargs):
+    return 1
+
+
+def text():
+    return 1
+
+
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+
+def chunks(task, it, n):
+    return 1
+
+
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+
+def xmap(task, it):
+    return 1
+
+
+def backend_cleanup():
+    return 1
+
+C:\Users\acer\PycharmProjects\news_site\newspaper\news\apps.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\news\apps.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\news\apps.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\__init__.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /favicon.ico
+Not Found: /home/
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\acer\PycharmProjects\news_site\newspaper\newspaper\celery.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader

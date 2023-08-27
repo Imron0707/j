@@ -10,6 +10,8 @@ from .models import Post, Category
 from .filters import PostFilter
 from django.urls import reverse_lazy
 from .forms import PostFormNews, PostFormArticle
+from .task import text
+
 
 
 class postList(ListView):
@@ -117,3 +119,8 @@ def subscribe(request, pk):
 
     message = 'Вы успешно подписались на рассылку новостей категории'
     return render(request, 'news/subscribe.html', {'category': category, 'message': message})
+
+
+def index(request):
+    text.delay()
+    return render(request, 'index.html')

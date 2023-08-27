@@ -200,3 +200,9 @@ APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 # that supports multiple background worker processes instead (e.g. Dramatiq, Celery, Django-RQ,
 # etc. See: https://djangopackages.org/grids/g/workers-queues-tasks/ for popular options).
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+
+CELERY_BROKER_URL = 'redis://default:DggEqNSQX45nBuYwVBgLE3qCsNLWIiA0@redis-13346.c258.us-east-1-4.ec2.cloud.redislabs.com:13346'
+CELERY_RESULT_BACKEND = 'redis://default:DggEqNSQX45nBuYwVBgLE3qCsNLWIiA0@redis-13346.c258.us-east-1-4.ec2.cloud.redislabs.com:13346'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
