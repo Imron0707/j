@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'accounts',
     'django_filters',
-    'django_apscheduler',
 ]
 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -203,6 +202,8 @@ APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
 
 CELERY_BROKER_URL = 'redis://default:DggEqNSQX45nBuYwVBgLE3qCsNLWIiA0@redis-13346.c258.us-east-1-4.ec2.cloud.redislabs.com:13346'
 CELERY_RESULT_BACKEND = 'redis://default:DggEqNSQX45nBuYwVBgLE3qCsNLWIiA0@redis-13346.c258.us-east-1-4.ec2.cloud.redislabs.com:13346'
+# CELERY_BROKER_URL = 'redis://localhost:6379/'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
